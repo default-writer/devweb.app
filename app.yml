@@ -10,5 +10,5 @@ services:
     volumes:
       - .:/workspace:cached
     environment:
-      - VIRTUAL_HOST=devweb.app
-      - LETSENCRYPT_HOST=devweb.app
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
