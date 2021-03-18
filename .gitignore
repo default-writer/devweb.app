@@ -16,4 +16,5 @@
 
 acme.sh
 nginx
-*.env
+.env
+dev.env
