@@ -1,0 +1,11 @@
+version: '2'
+services:
+  app:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      target: alpine
+      context: .
+    environment:
+      - VIRTUAL_HOST=devweb.app
+      - LETSENCRYPT_HOST=devweb.app

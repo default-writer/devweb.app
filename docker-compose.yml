@@ -1,4 +1,4 @@
-version: '2'
+version: "3.9"
 
 services:
   nginx-proxy:
@@ -8,15 +8,19 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - "/etc/nginx/vhost.d"
-      - "/usr/share/nginx/html"
-      - "/var/run/docker.sock:/tmp/docker.sock:ro"
-      - "/etc/nginx/certs"
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /usr/share/nginx/html
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./nginx/certs/:/etc/nginx/certs/
+      - ./nginx/dhparam/:/etc/nginx/dhparam/
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/vhost.d/:/etc/nginx/vhost.d/
 
   letsencrypt-nginx-proxy-companion:
     restart: always
     image: jrcs/letsencrypt-nginx-proxy-companion
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - ./acme.sh/:/etc/acme.sh/
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     volumes_from:
-      - "nginx-proxy"
+      - nginx-proxy
