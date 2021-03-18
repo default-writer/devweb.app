@@ -1,2 +1,3 @@
 #!/bin/sh
-docker-compose --env-file=.env -f app.yml up -d
+rm nginx/conf.d/default.conf
+docker-compose up -d -p app

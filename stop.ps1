@@ -1,1 +1,1 @@
-& docker-compose --env-file=.env -f app.yml down
+& docker-compose down

@@ -24,3 +24,16 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     volumes_from:
       - nginx-proxy
+
+  app:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      target: alpine
+      context: .
+    volumes:
+      - .:/workspace:cached
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
+      - PORT=${PORT}

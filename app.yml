@@ -12,3 +12,10 @@ services:
     environment:
       - VIRTUAL_HOST=${VIRTUAL_HOST}
       - LETSENCRYPT_HOST=${LETSENCRYPT_HOST}
+      - PORT=${PORT}
+    networks:
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+
