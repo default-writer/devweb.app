@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 
@@ -28,5 +29,5 @@ func main() {
 
 	port := os.Getenv("PORT")
 
-	http.ListenAndServe(fmt.Sprintf(":%s", port), r)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), r))
 }
