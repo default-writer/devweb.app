@@ -4,6 +4,9 @@ version = 1
 name = "go"
 enabled = true
 
+  [analyzers.meta]
+  import_paths = ["github.com/funcelot/devweb.app"]
+
 [[transformers]]
 name = "gofmt"
 enabled = true
