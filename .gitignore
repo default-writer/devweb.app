@@ -18,6 +18,3 @@ acme.sh
 nginx
 .env
 dev.env
-
-go.sum
-go.mod
