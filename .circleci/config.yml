@@ -13,8 +13,7 @@ jobs:
       - run:
           name: Install Dependencies
           command: | 
-            chmod +x ./init.sh
-            ./init.sh | true
+            go mod tidy
       - save_cache:
           key: go-mod-v4-{{ checksum "go.sum" }}
           paths:
