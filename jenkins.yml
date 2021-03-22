@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    environment:
+      - VIRTUAL_HOST=${JENKINS_VIRTUAL_HOST}
+      - VIRTUAL_PORT=${JENKINS_VIRTUAL_PORT}
+      - LETSENCRYPT_HOST=${JENKINS_LETSENCRYPT_HOST}
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+    ports:
+      - "${JENKINS_VIRTUAL_PORT}:${JENKINS_VIRTUAL_PORT}"
