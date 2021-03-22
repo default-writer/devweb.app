@@ -2,12 +2,16 @@ version: "3.9"
 
 services:
   jenkins:
-    image: jenkins/jenkins:lts
+    restart: always
+    build:
+      dockerfile: jenkins.Dockerfile
+      context: ./
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./jenkins_home:/var/jenkins_home
     environment:
       - VIRTUAL_HOST=${JENKINS_VIRTUAL_HOST}
       - VIRTUAL_PORT=${JENKINS_VIRTUAL_PORT}
       - LETSENCRYPT_HOST=${JENKINS_LETSENCRYPT_HOST}
-    volumes:
-      - ./jenkins_home:/var/jenkins_home
     ports:
       - "${JENKINS_VIRTUAL_PORT}:${JENKINS_VIRTUAL_PORT}"
