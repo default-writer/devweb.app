@@ -8,4 +8,6 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=funcelot_devweb.app&metric=alert_status)](https://sonarcloud.io/dashboard?id=funcelot_devweb.app)
 
+[![Quality Gate Status (on-premise)](https://sonarqube.devweb.app/api/project_badges/measure?project=funcelot_devweb.app&metric=alert_status)](https://sonarqube.devweb.app/dashboard?id=funcelot_devweb.app)
+
 [![DeepSource](https://deepsource.io/gh/funcelot/devweb.app.svg/?label=active+issues&show_trend=true)](https://deepsource.io/gh/funcelot/devweb.app/?ref=repository-badge)
