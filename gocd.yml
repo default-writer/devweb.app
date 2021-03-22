@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  server:
+    restart: always
+    image: gocd/gocd-server:v21.2.0
+    volumes:
+      - ./gocd/server:/godata
+    environment:
+      - VIRTUAL_HOST=${GOCD_SERVER_VIRTUAL_HOST}
+      - LETSENCRYPT_HOST=${GOCD_SERVER_LETSENCRYPT_HOST}
+    ports:
+      - "${GOCD_SERVER_PORT}:${GOCD_SERVER_PORT}"
+
+  agent:
+    depends_on:
+      - server
+    restart: always
+    image: gocd/gocd-agent-docker-dind:v21.2.0
+    privileged: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./gocd/agent:/godata
+    environment:
+      - GO_SERVER_URL=http://server:${GOCD_SERVER_PORT}/go
+
+   
