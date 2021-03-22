@@ -7,7 +7,7 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=funcelot_devweb.app&metric=sqale_rating)](https://sonarcloud.io/dashboard?
 id=funcelot_devweb.app)
 
-[![Quality Gate Status (on-premise)](https://sonarqube.devweb.app/api/project_badges/measure?project=funcelot_devweb.app&metric=alert_status)](https://sonarqube.devweb.app/dashboard?id=funcelot_devweb.app)
+[![Quality Gate Status](https://sonarqube.devweb.app/api/project_badges/measure?project=funcelot_devweb.app&metric=alert_status)](https://sonarqube.devweb.app/dashboard?id=funcelot_devweb.app)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=funcelot_devweb.app&metric=alert_status)](https://sonarcloud.io/dashboard?id=funcelot_devweb.app)
 
