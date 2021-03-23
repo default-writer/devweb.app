@@ -13,15 +13,28 @@ services:
       - "${GOCD_SERVER_PORT}:${GOCD_SERVER_PORT}"
 
   agent:
-    depends_on:
-      - server
     restart: always
     image: gocd/gocd-agent-docker-dind:v21.2.0
     privileged: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./gocd/agent:/godata
+      - ./gocd/agent/:/godata
+      - ./gocd/go-agent/:/usr/share/go-agent
     environment:
-      - GO_SERVER_URL=http://server:${GOCD_SERVER_PORT}/go
+      - GO_SERVER_URL=http://${GOCD_SERVER_VIRTUAL_HOST}:${GOCD_SERVER_PORT}/go
 
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_VIRTUAL_PORT}:${POSTGRES_VIRTUAL_PORT}"
+
+volumes:
+  postgresql:
+  postgresql_data:
    

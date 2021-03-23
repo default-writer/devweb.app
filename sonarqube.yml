@@ -18,6 +18,7 @@ services:
       - sonarqube_logs:/opt/sonarqube/logs
     ports:
       - "${SONARQUBE_VIRTUAL_PORT}:${SONARQUBE_VIRTUAL_PORT}"
+
   db:
     image: postgres:12
     environment:
