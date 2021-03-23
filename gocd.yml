@@ -19,7 +19,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./gocd/agent/:/godata
-      - ./gocd/go-agent/:/usr/share/go-agent
     environment:
       - GO_SERVER_URL=http://${GOCD_SERVER_VIRTUAL_HOST}:${GOCD_SERVER_PORT}/go
 
