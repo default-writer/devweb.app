@@ -13,3 +13,4 @@ RUN curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-c
     chmod +x /usr/local/bin/docker-compose && \
     ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 USER jenkins
+RUN jenkins-plugin-cli --plugins "blueocean:1.24.5 docker-workflow:1.26"
