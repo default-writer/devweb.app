@@ -2,7 +2,8 @@ version: "3.9"
 
 services:
   server:
-    restart: always
+    depends_on:
+      - db
     image: gocd/gocd-server:v21.2.0
     volumes:
       - ./gocd/server:/godata
@@ -13,14 +14,17 @@ services:
       - "${GOCD_SERVER_PORT}:${GOCD_SERVER_PORT}"
 
   agent:
-    restart: always
+    depends_on:
+      - server
+      - db
     image: gocd/gocd-agent-docker-dind:v21.2.0
+    restart: always
     privileged: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./gocd/agent/:/godata
     environment:
-      - GO_SERVER_URL=http://${GOCD_SERVER_VIRTUAL_HOST}:${GOCD_SERVER_PORT}/go
+      - GO_SERVER_URL=http://server:${GOCD_SERVER_PORT}/go
 
   db:
     image: postgres:12
