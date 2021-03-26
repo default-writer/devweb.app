@@ -2,36 +2,20 @@ version: "3.9"
 
 services:
   jenkins:
-    depends_on:
-      - docker
     build:
       dockerfile: jenkins.Dockerfile
       context: ./
+    user: root
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./jenkins_home:/var/jenkins_home
-      - client-certs:/certs/client:ro
     environment:
       - VIRTUAL_HOST=${JENKINS_VIRTUAL_HOST}
       - VIRTUAL_PORT=${JENKINS_VIRTUAL_PORT}
       - LETSENCRYPT_HOST=${JENKINS_LETSENCRYPT_HOST}
-      - DOCKER_CERTS_PATH=/certs/client
-      - DOCKER_TLS_VERIFY=1
-      - DOCKER_HOST=tcp://docker:2376
     ports:
       - "${JENKINS_VIRTUAL_PORT}:${JENKINS_VIRTUAL_PORT}"
       - "${JENKINS_AGENT_VIRTUAL_PORT}:${JENKINS_AGENT_VIRTUAL_PORT}"
- 
-  docker:
-    image: docker:dind
-    privileged: true
-    environment:
-      - DOCKER_TLS_CERTDIR=/certs
-    volumes:
-      - ./jenkins_home:/var/jenkins_home
-      - client-certs:/certs/client
-    ports:
-      - "2376:2376"
 
 volumes:
     client-certs:
